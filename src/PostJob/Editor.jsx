@@ -48,9 +48,8 @@ const Editor = () => {
   };
 
   return (
-    <div className="w-full">
+    <div>
       <RichTextEditor
-      className="w-full !p-4"
         ref={rteRef}
         extensions={[
           StarterKit,
