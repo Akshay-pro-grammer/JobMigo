@@ -3,6 +3,7 @@ import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import JobDesc from '../JobDesc/JobDesc';
+import RecJob from '../JobDesc/RecJob';
 
 const JobDescPage = () => {
   return (
@@ -11,8 +12,9 @@ const JobDescPage = () => {
                 <Button startIcon={<ArrowBackSharpIcon/>} className='!text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-800' variant="outlined" fullWidth>Go Back</Button>
             </Link>
             {/* <Divider variant='middle'/> */}
-            <div className='flex gap-5'>
+            <div className='flex gap-5 justify-around'>
                 <JobDesc/>
+                <RecJob/>
             </div>
     </div>
   )

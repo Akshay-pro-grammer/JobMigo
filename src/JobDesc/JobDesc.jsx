@@ -33,7 +33,7 @@ const JobDesc = () => {
                     <div className="p-3 bg-nile-blue-800 rounded-xl">
                         <img className="h-14 w-14" src={`/Icons/Google.png`} alt="" />
                     </div>
-                    <div>
+                    <div className='flex flex-col'>
                         <div className="font-semibold text-2xl">Software Engineer</div>
                         <div className="text-lg text-nile-blue-300">
                             Google &#x2022; 3 Days Ago &#x2022; 48 Applicants
@@ -87,7 +87,32 @@ const JobDesc = () => {
             </div>
             <Divider sx={{ my: 2 }} />
             <div>
-                <div className='text-xl font-semibold mb-5'>Required Skills</div>
+                <div className='text-xl font-semibold mb-5'>About the Company</div>
+                <div>
+                    <div className="flex justify-between mb-3">
+                        <div className="flex gap-2 items-center">
+                            <div className="p-3 bg-nile-blue-800 rounded-xl">
+                                <img className="h-8 w-8" src={`/Icons/Google.png`} alt="" />
+                            </div>
+                            <div className='flex flex-col'>
+                                <div className="font-medium text-lg">Google</div>
+                                <div className=" text-nile-blue-300">
+                                    10k+ Employees
+                                </div>
+                            </div>
+                        </div>
+                        <Link to="">
+                            <Button
+                                className="!text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-800"
+                                variant="outlined"
+                                fullWidth
+                            >
+                                Company Page
+                            </Button>
+                        </Link>
+                    </div>
+                    <div className='text-nile-blue-300 text-justify'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi totam voluptas maxime quidem officia corporis rerum voluptates, id tempore nulla est dolorum fugit eos iste ad quo illo nemo nihil corrupti esse quasi labore ipsa eum. Sed alias necessitatibus minima.</div>
+                </div>
             </div>
         </div>
     );
