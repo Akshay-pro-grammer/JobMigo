@@ -101,7 +101,7 @@ const JobDesc = () => {
                                 </div>
                             </div>
                         </div>
-                        <Link to="">
+                        <Link to="/company">
                             <Button
                                 className="!text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-800"
                                 variant="outlined"
