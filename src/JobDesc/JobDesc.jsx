@@ -9,7 +9,7 @@ import IconPremiumRights from '@mui/icons-material/MonetizationOn';
 import IconRecharging from '@mui/icons-material/Bolt';
 import DOMPurify from 'dompurify';
 
-const JobDesc = () => {
+const JobDesc = (props) => {
     const card = [
         { name: "Location", icon: "IconMapPin", value: "New York" },
         { name: "Experience", icon: "IconBriefcase", value: "Expert" },
@@ -43,14 +43,20 @@ const JobDesc = () => {
                 <div className="flex flex-col gap-2 items-center">
                     <Link to="/apply-job">
                         <Button
-                            className="!text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-800"
+                            className="!text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-900"
                             variant="outlined"
                             fullWidth
                         >
-                            Apply Now
+                            {props.edit ? "Edit" : "Apply"}
                         </Button>
                     </Link>
-                    <BookmarkBorderRoundedIcon className="text-quarter-spanish-white-400 cursor-pointer" />
+                    {props.edit?<Button
+                            className="!text-red-500 !border-red-500 hover:!bg-nile-blue-900"
+                            variant="outlined"
+                            fullWidth
+                        >
+                            Delete
+                        </Button>:<BookmarkBorderRoundedIcon className="text-quarter-spanish-white-400 cursor-pointer" />}
                 </div>
             </div>
             <Divider sx={{ my: 2 }} />
