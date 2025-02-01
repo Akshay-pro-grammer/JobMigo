@@ -14,6 +14,7 @@ import JobDescPage from "./Pages/JobDescPage";
 import ApplyJobPage from "./Pages/ApplyJobPage";
 import CompanyPage from "./Pages/CompanyPage";
 import PostedJobPage from "./Pages/PostedJobPage";
+import JobHistoryPage from "./Pages/JobHistoryPage";
 
 
 const theme = createTheme({
@@ -49,6 +50,7 @@ function App() {
           <Route path="/find-talent" element={<FindTalent/>} />
           <Route path="/company" element={<CompanyPage/>} />
           <Route path="/posted-job" element={<PostedJobPage/>} />
+          <Route path="/job-history" element={<JobHistoryPage/>} />
           <Route path="/post-job" element={<PostJobPage/>} />
           <Route path="/talent-profile" element={<TalentProfilePage/>} />
           <Route path="*" element={<HomePage />} />
