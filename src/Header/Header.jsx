@@ -6,6 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import Badge from '@mui/material/Badge';
 import NavLinks from "./NavLinks"; // Correct path based on your folder structure
 import { useLocation } from "react-router-dom";
+import ProfileMenu from "./ProfileMenu";
 
 
 const Header = () => {
@@ -28,11 +29,12 @@ const Header = () => {
             <div className="flex gap-3 items-center">
                 <div className="flex gap-2 items-center">
                     <div>Akshay</div>
-                    <Avatar
+                    {/* <Avatar
                         alt="User Avatar"
-                        src="https://via.placeholder.com/150" // Replace with actual image URL
+                        src="/avatar.png" // Replace with actual image URL
                         sx={{ width: 40, height: 40 }} // Customize size
-                    />
+                    />*/}
+                    <ProfileMenu/>
                 </div>
                 <div className="cursor-pointer bg-nile-blue-700 p-1.5 rounded-full">
                     <SettingsOutlinedIcon />
