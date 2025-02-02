@@ -15,13 +15,14 @@ import ApplyJobPage from "./Pages/ApplyJobPage";
 import CompanyPage from "./Pages/CompanyPage";
 import PostedJobPage from "./Pages/PostedJobPage";
 import JobHistoryPage from "./Pages/JobHistoryPage";
+import SignUpPage from "./Pages/SignUpPage";
 
 
 const theme = createTheme({
   palette: {
     mode: "dark", // Change to "dark" for dark mode
     primary: {
-      main: "#c7a258", // Custom primary color
+      main: "#fed33c", // Custom primary color
     },
     secondary: {
       main: "#ff4081", // Custom secondary color
@@ -52,6 +53,8 @@ function App() {
           <Route path="/posted-job" element={<PostedJobPage/>} />
           <Route path="/job-history" element={<JobHistoryPage/>} />
           <Route path="/post-job" element={<PostJobPage/>} />
+          <Route path="/signup" element={<SignUpPage/>} />
+          <Route path="/login" element={<SignUpPage/>} />
           <Route path="/talent-profile" element={<TalentProfilePage/>} />
           <Route path="*" element={<HomePage />} />
         </Routes>

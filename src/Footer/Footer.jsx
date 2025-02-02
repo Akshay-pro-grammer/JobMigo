@@ -3,6 +3,7 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import AlignVerticalTopOutlinedIcon from '@mui/icons-material/AlignVerticalTopOutlined';
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import { useLocation } from 'react-router-dom';
 const Footer = () => {
     const footerLinks = [
         { title: "Product", links: ["Find Job", "Find Company", "Find Employee"] },
@@ -10,7 +11,9 @@ const Footer = () => {
         { title: "Support", links: ["Help & Support", "Feedback", "FAQs"] }
 
     ]
-    return (<div className='pt-20 pb-5 flex gap-5 justify-around bg-nile-blue-800 font-["poppins"]'>
+    const location = useLocation();
+    return (
+        (location.pathname!="/signup"&&location.pathname!="/login" ) &&<div className='pt-20 pb-5 flex gap-5 justify-around bg-nile-blue-800 font-["poppins"]'>
         <div className='w-1/4 flex flex-col gap-4'>
             <div className="flex gap-2 items-center text-quarter-spanish-white-400">
                 <BusinessCenterOutlinedIcon />
