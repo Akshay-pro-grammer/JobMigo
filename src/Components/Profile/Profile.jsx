@@ -171,19 +171,9 @@ const Profile = (props) => {
                                 <TextField
                                     label="Title" value={exp.title} onChange={(e) => handleExperienceChange(index, 'title', e.target.value)} fullWidth margin="normal" />
                                 <TextField label="Company" value={exp.company} onChange={(e) => handleExperienceChange(index, 'company', e.target.value)} fullWidth margin="normal"/>
-                                <TextField
-                                    label="Location"
-                                    value={exp.location}
-                                    onChange={(e) => handleExperienceChange(index, 'location', e.target.value)}
-                                    fullWidth
-                                    margin="normal"
-                                />
+                                <TextField label="Location" value={exp.location} onChange={(e) => handleExperienceChange(index, 'location', e.target.value)} fullWidth margin="normal"                                 />
                                 <div className="flex gap-4">
-                                    <TextField
-                                        label="Start Date"
-                                        type="date"
-                                        value={exp.startDate}
-                                        onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)}
+                                    <TextField label="Start Date" type="date" value={exp.startDate} onChange={(e) => handleExperienceChange(index, 'startDate', e.target.value)}
                                         fullWidth
                                         margin="normal"
                                         InputLabelProps={{ shrink: true }}

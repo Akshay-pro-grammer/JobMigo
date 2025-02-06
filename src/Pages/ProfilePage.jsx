@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material'
 import React from 'react'
-import Profile from '../Profile/Profile'
+import Profile from '../Components/Profile/Profile'
 
 const ProfilePage = () => {
     const profile={

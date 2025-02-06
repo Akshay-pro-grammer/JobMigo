@@ -2,8 +2,8 @@ import { Button } from '@mui/material'
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 import React from 'react'
 import { Link } from 'react-router-dom'
-import JobDesc from '../JobDesc/JobDesc';
-import RecJob from '../JobDesc/RecJob';
+import JobDesc from '../Components/JobDesc/JobDesc';
+import RecJob from '../Components/JobDesc/RecJob';
 
 const JobDescPage = () => {
   return (

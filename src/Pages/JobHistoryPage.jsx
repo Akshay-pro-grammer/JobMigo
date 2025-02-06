@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material'
 import React from 'react'
-import JobHistory from '../JobHistory/JobHistory'
+import JobHistory from '../Components/JobHistory/JobHistory'
 
 const JobHistoryPage = () => {
   return (

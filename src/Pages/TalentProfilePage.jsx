@@ -2,8 +2,8 @@ import { Button, Divider } from '@mui/material'
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Profile from '../TalentProfile/Profile';
-import RecommendTalent from '../TalentProfile/RecommendTalent';
+import Profile from '../Components/TalentProfile/Profile';
+import RecommendTalent from '../Components/TalentProfile/RecommendTalent';
 
 const TalentProfilePage = () => {
     const profile={

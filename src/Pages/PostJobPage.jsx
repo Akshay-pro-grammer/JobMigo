@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material'
 import React from 'react'
-import PostJob from '../PostJob/PostJob'
+import PostJob from '../Components/PostJob/PostJob'
 
 const PostJobPage = () => {
     

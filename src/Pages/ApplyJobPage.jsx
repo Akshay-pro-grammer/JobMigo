@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import React from 'react'
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 import { Link } from 'react-router-dom'
-import ApplyJobComp from '../ApplyJob/ApplyJobComp';
+import ApplyJobComp from '../Components/ApplyJob/ApplyJobComp';
 
 const ApplyJobPage = () => {
     

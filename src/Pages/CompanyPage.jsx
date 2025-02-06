@@ -2,8 +2,8 @@ import { Button } from '@mui/material'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
-import Company from '../CompanyProfile/Company';
-import SimilarCompanies from '../CompanyProfile/SimilarCompanies';
+import Company from '../Components/CompanyProfile/Company';
+import SimilarCompanies from '../Components/CompanyProfile/SimilarCompanies';
 
 const CompanyPage = () => {
     const navigate=useNavigate();
