@@ -10,4 +10,19 @@ const loginUser= async(login)=>{
     .then(res=>res.data)
     .catch(err=>{throw err;});
 }
-export {registerUser,loginUser};
+const sendOtp=async(email)=>{
+        return axios.post(`${base_url}sendOtp/${email}`)
+        .then(res=>res.data)
+        .catch(err=>{throw err;});  
+}
+const verifyOtp=async(email,otp)=>{
+    return axios.get(`${base_url}verifyOtp/${email}/${otp}`)
+    .then(res=>res.data)
+    .catch(err=>{throw err;});
+}
+const changepass=async(email,password)=>{
+    return axios.post(`${base_url}changePass`,{email,password})
+    .then(res=>res.data)
+    .catch(err=>{throw err;});
+}
+export {registerUser,loginUser,sendOtp,verifyOtp,changepass};

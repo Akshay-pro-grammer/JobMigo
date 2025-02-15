@@ -119,7 +119,6 @@ const SignUp = () => {
                     <FormControl error={!!formError.email}>
                         <Typography variant="body1" className="text-quarter-spanish-white-200 font-semibold mb-2">Email *</Typography>
                         <Input
-                            error={formError.email}
                             name='email'
                             value={data.email}
                             onChange={handleChange}

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../Services/UserService';
 import { loginValidation } from '../../Services/FormValidation';
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
+import ResetPassword from './ResetPassword';
 
 const form = {
     email: "",
@@ -56,13 +57,17 @@ const Login = () => {
             });
         }
     }
+    // forgot password
+    const [openReset, setOpenReset] = useState(false);
+    const handleOpenReset = () => setOpenReset(true);
+    const handleCloseReset = () => setOpenReset(false);
     return (
         <>
         <div className='w-1/2 px-20 flex flex-col justify-center gap-3'>
         <Button onClick={() => navigate("/homepage")} startIcon={<ArrowBackSharpIcon/>} className='w-24 !text-quarter-spanish-white-400 !border-quarter-spanish-white-300 hover:!bg-nile-blue-800' variant="outlined" >Home</Button>
             <div className='font-2xl font-semibold'>Create Account</div>
 
-            <Box className="flex flex-col gap-5">
+            <Box className="flex flex-col gap-3">
                 {/* Email */}
                 <Box className="flex flex-col">
                 <FormControl error={!!formError.email}>
@@ -131,8 +136,12 @@ const Login = () => {
             <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
                 <CircularProgress color="success" />
             </Backdrop>
-
+            {/* forget password link */}
+            <div onClick={handleOpenReset} className='hover:underline text-quarter-spanish-white-400 cursor-pointer text-center'>
+                Forget Password
+            </div>
         </div>
+        <ResetPassword open={openReset} close={handleCloseReset} />
         </>
     )
 }
