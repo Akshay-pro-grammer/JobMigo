@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, Modal, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { changepass, sendOtp, verifyOtp } from "../../Services/UserService";
 import { signupValidation } from "../../Services/FormValidation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -32,6 +32,29 @@ const ResetPassword = (props) => {
     const [notiMessage, setNotiMessage] = useState("");
     const [notiType, setNotiType] = useState("success");
     const [notiLoading, setNotiLoading] = useState(false);
+    const [resendCooldown, setResendCooldown] = useState(60);
+
+    useEffect(() => {
+        if (resendCooldown <= 0) return; // Stop if cooldown is already 0
+    
+        const timer = setInterval(() => {
+            setResendCooldown((prev) => {
+                if (prev <= 1) {
+                    clearInterval(timer); // Stop interval when cooldown reaches 0
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    
+        return () => clearInterval(timer); // Cleanup interval on unmount
+    }, [resendCooldown]);
+
+    const handleResendClick = () => {
+        if (resendCooldown > 0) return; // Prevent multiple clicks
+        resendOtp();
+        setResendCooldown(60); // Start the cooldown
+    };
 
     // Show notification with message and type
     const showNotification = (message, type = "success") => {
@@ -99,6 +122,12 @@ const ResetPassword = (props) => {
                 showNotification(err.message || "Failed to reset password", "error");
             });
             setPassword("");
+            setEmail("");
+            setOtpSent(false);
+            setVerified(false);
+            setOtp("");
+            setPassError("");
+            setShowPassword(false);
             props.close()
     };
 
@@ -168,8 +197,8 @@ const ResetPassword = (props) => {
                         {/* Additional Buttons */}
                         {otpSent && !verified && (
                             <div className="flex gap-2">
-                                <Button onClick={resendOtp} className="bg-nile-blue-600 text-white px-4 py-2 rounded-md hover:bg-nile-blue-700" fullWidth>
-                                    Resend OTP
+                                <Button onClick={handleResendClick} className="bg-nile-blue-600 text-white px-4 py-2 rounded-md hover:bg-nile-blue-700" fullWidth>
+                                    Resend OTP {resendCooldown > 0 && `in ${resendCooldown}`}
                                 </Button>
                                 <Button onClick={changeEmail} className="bg-nile-blue-600 text-white px-4 py-2 rounded-md hover:bg-nile-blue-700" fullWidth>
                                     Change Email
