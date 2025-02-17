@@ -17,6 +17,7 @@ import PostedJobPage from "./Pages/PostedJobPage";
 import JobHistoryPage from "./Pages/JobHistoryPage";
 import SignUpPage from "./Pages/SignUpPage";
 import ProfilePage from "./Pages/ProfilePage";
+import { Provider } from "react-redux";
 
 
 const theme = createTheme({
@@ -40,6 +41,7 @@ const theme = createTheme({
 
 function App() {
   return (
+    <Provider store={store}>
     <ThemeProvider  theme={theme}>
       <BrowserRouter>
       <Header/>
@@ -64,6 +66,7 @@ function App() {
         <Footer/>
       </BrowserRouter>
     </ThemeProvider>
+    </Provider>
   );
 }
 
