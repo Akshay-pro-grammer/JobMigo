@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider, createTheme, CssBaseline, Divider } from "@mui/material";
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // Fixed missing imports
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"; // Fixed missing imports
 import HomePage from "./Pages/HomePage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,13 +18,16 @@ import JobHistoryPage from "./Pages/JobHistoryPage";
 import SignUpPage from "./Pages/SignUpPage";
 import ProfilePage from "./Pages/ProfilePage";
 import { Provider } from "react-redux";
+import Store from "./Store";
+import { getItem } from "./Services/LocalStorageService";
+import AppRoutes from "./Pages/AppRoutes";
 
 
 const theme = createTheme({
   palette: {
     mode: "dark", // Change to "dark" for dark mode
     primary: {
-      main: "#fed33c", // Custom primary color
+      main: "#1fc0f1", // Custom primary color
     },
     secondary: {
       main: "#ff4081", // Custom secondary color
@@ -41,31 +44,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <Provider store={store}>
-    <ThemeProvider  theme={theme}>
-      <BrowserRouter>
-      <Header/>
-      <Divider variant='middle'/>
-        <Routes>
-          {/* NOTE:- routes matches from the starting , in sequence thats why wew keep the wild card at the end */}
-          <Route path="/find-jobs" element={<FindJobs/>} />
-          <Route path="/jobs" element={<JobDescPage/>} />
-          <Route path="/apply-job" element={<ApplyJobPage/>} />
-          <Route path="/find-talent" element={<FindTalent/>} />
-          <Route path="/talent-profile" element={<TalentProfilePage/>} />
-          <Route path="/company" element={<CompanyPage/>} />
-          <Route path="/posted-job" element={<PostedJobPage/>} />
-          <Route path="/job-history" element={<JobHistoryPage/>} />
-          <Route path="/post-job" element={<PostJobPage/>} />
-          <Route path="/signup" element={<SignUpPage/>} />
-          <Route path="/login" element={<SignUpPage/>} />
-          <Route path="/profile" element={<ProfilePage/>} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+    <Provider store={Store}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Footer/>
-      </BrowserRouter>
-    </ThemeProvider>
+       <AppRoutes/>
+      </ThemeProvider>
     </Provider>
   );
 }

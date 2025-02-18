@@ -8,16 +8,19 @@ import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 import ResetPassword from './ResetPassword';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Slices/UserSlice';
+import BeautifulLoadingOverlay from '../convert/Loading';
 
 const form = {
     email: "",
     password: ""
 }
 const Login = () => {
+    const [pageLoading, setPageLoading] = useState(false);
+
     const dispatch = useDispatch();
+
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [formError, setFormError] = useState(form);
 
@@ -35,27 +38,27 @@ const Login = () => {
     const handleSubmit = () => {
         let valid = true, newFormError = {};
         for (let key in data) {
-
+            
             newFormError[key] = loginValidation(key, data[key]);
             if (newFormError[key]) valid = false;
         }
         setFormError(newFormError);
         if (valid) {
-            setLoading(true);
+            setPageLoading(true);
             loginUser(data)
                 .then(res => {
-                    setLoading(false); // Hide loading spinner
                     setMessage("Login successful! Redirecting to Homepage...");
                     setOpen(true); // Show snackbar
 
                     // Navigate to login after 5 seconds
                     setTimeout(() => {
+                        setPageLoading(false);
                         dispatch(setUser(res));
                         navigate("/homepage");
                     }, 5000);
                 })
                 .catch(err => {
-                    setLoading(false); // Hide loading spinner
+                    setPageLoading(false);
                     setMessage("Login failed! Please try again.");
                     setOpen(true); // Show snackbar
                 });
@@ -116,6 +119,7 @@ const Login = () => {
                         </FormControl>
                     </Box>
                     <Button
+                        loading={pageLoading}
                         onClick={handleSubmit}
                         variant="contained"
                         className="bg-nile-blue-500 hover:bg-nile-blue-600 text-white font-semibold py-3 rounded-lg mt-4"
@@ -137,9 +141,7 @@ const Login = () => {
                 </Snackbar>
 
                 {/* Loading Overlay */}
-                <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-                    <CircularProgress color="success" />
-                </Backdrop>
+                <BeautifulLoadingOverlay open={pageLoading}/>
                 {/* forget password link */}
                 <div onClick={handleOpenReset} className='hover:underline text-quarter-spanish-white-400 cursor-pointer text-center'>
                     Forget Password

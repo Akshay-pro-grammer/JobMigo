@@ -13,8 +13,12 @@ import DarkModeTwoToneIcon from '@mui/icons-material/DarkModeTwoTone';
 import Logout from '@mui/icons-material/Logout';
 import SwitchMode from '../convert/SwitchMode';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from "../../Slices/UserSlice"; 
 
 const ProfileMenu = () => {
+    const dispatch = useDispatch();
+    const user=useSelector(state=>state.user);
     // Mode
     const [checked, setChecked] = React.useState(false);
     // 
@@ -26,8 +30,14 @@ const ProfileMenu = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleLogout = () => {
+        dispatch(removeUser());
+    }
+
     return (
         <React.Fragment>
+            <div>{user.name}</div>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                 <Tooltip title="Account settings">
                     <IconButton
@@ -37,7 +47,7 @@ const ProfileMenu = () => {
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
-                    >
+                        >
                         <Avatar sx={{ width: 32, height: 32 }} src='/avatar.png'></Avatar>
                     </IconButton>
                 </Tooltip>
@@ -80,7 +90,7 @@ const ProfileMenu = () => {
                         <DarkModeTwoToneIcon className='mx-1' />Dark Mode <SwitchMode checked={checked} setChecked={setChecked} />
                     </div>
                 </MenuItem>
-                <MenuItem className='!text-red-500'>
+                <MenuItem onClick={handleLogout} className='!text-red-500'>
                     <Logout className='mx-1' /><span>Logout</span>
                 </MenuItem>
             </Menu>

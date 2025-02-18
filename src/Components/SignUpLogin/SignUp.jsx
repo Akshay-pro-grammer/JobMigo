@@ -5,6 +5,7 @@ import { Form, Link, useNavigate } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
 import { registerUser } from '../../Services/UserService';
 import { signupValidation } from '../../Services/FormValidation';
+import BeautifulLoadingOverlay from '../convert/Loading';
 
 
 const form = {
@@ -16,11 +17,11 @@ const form = {
 }
 
 const SignUp = () => {
+    const [pageLoading, setPageLoading] = useState(false);
     const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -66,33 +67,34 @@ const SignUp = () => {
             }
             if (newFormError[key]) valid = false;
         }
-    
+        
         setFormError(newFormError);
-    
+        
         if (valid) {
-            setLoading(true); // Show loading spinner
+            setPageLoading(true);
             registerUser(data)
                 .then(res => {
-                    setLoading(false); // Hide loading spinner
                     setMessage("Signup successful! Redirecting to Login...");
                     setOpen(true); // Show snackbar
     
                     // Navigate to login after 5 seconds
                     setTimeout(() => {
+                        setPageLoading(false);
                         navigate("/login");
                     }, 5000);
                 })
                 .catch(err => {
-                    setLoading(false); // Hide loading spinner
+                    setPageLoading(false);
                     setMessage("Signup failed! Please try again.");
                     setOpen(true); // Show snackbar
                 });
         }
     };
     
-
-    return (
-        <div className='w-1/2 px-20 flex flex-col justify-center gap-3'>
+    
+    return (<>
+        <BeautifulLoadingOverlay open={pageLoading} signup />
+        <div className='w-1/2 px-20 flex flex-col justify-center gap-3 '>
             <div className='font-2xl font-semibold'>Create Account</div>
 
             <Box className="flex flex-col gap-5">
@@ -109,7 +111,7 @@ const SignUp = () => {
                             fullWidth
                             disableUnderline
                             className="px-4 py-3 border border-nile-blue-300 rounded-lg text-nile-blue-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-nile-blue-500"
-                        />
+                            />
                         <FormHelperText>{formError.name}</FormHelperText>
                     </FormControl>
                 </Box>
@@ -127,7 +129,7 @@ const SignUp = () => {
                             fullWidth
                             disableUnderline
                             className="px-4 py-3 border border-nile-blue-300 rounded-lg text-nile-blue-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-nile-blue-500"
-                        />
+                            />
                         <FormHelperText>{formError.email}</FormHelperText>
                     </FormControl>
                 </Box>
@@ -146,7 +148,7 @@ const SignUp = () => {
                             disableUnderline
                             required
                             className="px-4 py-3 border border-nile-blue-300 rounded-lg text-nile-blue-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-nile-blue-500"
-                        />
+                            />
                         <FormHelperText>{formError.password}</FormHelperText>
                     </FormControl>
                 </Box>
@@ -172,7 +174,7 @@ const SignUp = () => {
                             disableUnderline
                             required
                             className="px-4 py-3 border border-nile-blue-300 rounded-lg text-nile-blue-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-nile-blue-500"
-                        />
+                            />
                         <FormHelperText>{formError.confirmPassword}</FormHelperText>
                     </FormControl>
                 </Box>
@@ -185,7 +187,7 @@ const SignUp = () => {
                         defaultValue={"APPLICANT"}
                         value={data.accountType}
                         onChange={handleChange}
-                    >
+                        >
                         <FormControlLabel value="APPLICANT" control={<Radio />} label="Applicant" />
                         <FormControlLabel value="EMPLOYER" control={<Radio />} label="Employer" />
                     </RadioGroup>
@@ -205,13 +207,13 @@ const SignUp = () => {
                             I Agree to the <span className="text-nile-blue-400">Terms & Conditions</span>
                         </Typography>
                     }
-                />
+                    />
                 <Button
                     onClick={handleSubmit}
                     variant="contained"
                     className="bg-nile-blue-500 hover:bg-nile-blue-600 text-white font-semibold py-3 rounded-lg mt-4"
                     fullWidth
-                >
+                    >
                     Sign Up
                 </Button>
                 <div className='mx-auto'>Have an account? <Link to={'/login'} className='text-quarter-spanish-white-400 hover:underline' >Login </Link></div>
@@ -221,18 +223,15 @@ const SignUp = () => {
                 autoHideDuration={4000} // Snackbar disappears after 4 seconds
                 onClose={() => setOpen(false)}
                 anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            >
+                >
                 <Alert severity="success" onClose={() => setOpen(false)}>
                     {message}
                 </Alert>
             </Snackbar>
 
             {/* Loading Overlay */}
-            <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-                <CircularProgress color="success" />
-            </Backdrop>
-
         </div>
+        </>
     )
 }
 

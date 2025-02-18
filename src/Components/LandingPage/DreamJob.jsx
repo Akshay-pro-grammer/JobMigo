@@ -48,7 +48,7 @@ const DreamJob = () => {
                     </div>
                     <div className='absolute w-fit top-[35%] left-[5%] border-quarter-spanish-white-500 rounded-lg p-2 backdrop-blur-md gap-3 flex flex-col'>
                         <div className='flex gap-2 items-center'>
-                                <div className='w-10 h-10 p-1 bg-quarter-spanish-white-400 rounded-lg'>
+                                <div className='w-10 h-10 p-1 bg-quarter-spanish-white-100 rounded-lg'>
                                     <img src="./Icons/Google.png" alt="" />
                                 </div>
                                 <div className='text-sm text-quarter-spanish-white-100'>
